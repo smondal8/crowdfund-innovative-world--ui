@@ -16,6 +16,9 @@ import { AuthService } from './Shared/Services/auth.service';
 import { LoginComponent } from './Components/login/login.component';
 import { ProjectService } from './Shared/Services/project.service';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './Authentication/auth.Guard';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -24,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     ContentComponent,
-    LoginComponent   
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +42,10 @@ import { FormsModule } from '@angular/forms';
     }),
     HttpClientModule,
     FormsModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
-  providers: [DashboardService, CommunicationService, AuthService, ProjectService],
+  providers: [DashboardService, CommunicationService, AuthService, ProjectService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

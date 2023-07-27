@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Shared/Services/auth.service';
 import { TokenService } from 'src/app/Shared/Services/token.service';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,7 @@ export class LoginComponent implements OnInit {
   userLoggedIn = false ;
   verifyUserDetails = false;
   redirectURL = window.location.origin + '/dashboard';
+  selected : any;
 
   constructor(private router: Router, private authService: AuthService, private cookie: CookieService,
     private toastr: ToastrService, private tokenService: TokenService) { }

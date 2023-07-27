@@ -12,6 +12,7 @@ export interface TabItem {
 export class ContentComponent implements OnInit {
 
   @Input() userLoggedIn : boolean;
+
   constructor() { }
 
   ngOnInit(): void {

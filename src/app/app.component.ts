@@ -37,4 +37,7 @@ export class AppComponent implements OnInit {
       this.userLoggedIn = false;
     }
   }
+  logout(userstate : any){
+    this.userLoggedIn = userstate;
+  }
 }

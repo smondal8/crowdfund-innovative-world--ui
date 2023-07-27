@@ -1,8 +1,8 @@
 <div class="outer-container">
   <header class="header">
-    <app-header [userLoggedIn] = "userLoggedIn"></app-header>
+    <app-header [userLoggedIn] = "userLoggedIn" (logoutEmitter)="logout($event)"></app-header>
   </header>
-  <main class="content"> 
+  <main class="content">
     <app-content [userLoggedIn] = "userLoggedIn"></app-content>
   </main>
   <footer class="footerclass">

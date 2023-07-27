@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path:'dashboard',
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     data : {
       userRoles : []
     },
@@ -27,9 +27,9 @@ const routes: Routes = [
   {
     path:'project',
     canActivate: [AuthGuard],
-//     data : {
-//       userRoles : []
-//     },
+    data : {
+      userRoles : []
+    },
     loadChildren: ()=>import('./Modules/project/project.module').then(m=>m.ProjectModule)
   },
   {
