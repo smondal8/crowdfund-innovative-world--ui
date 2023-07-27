@@ -1,0 +1,32 @@
+<div class="firstsection">
+    <div class="title">
+        <h4>Projects List</h4>
+    </div>
+    <span class="example-spacer"></span>
+    <div class="form-group has-search">       
+        <mat-icon matSuffix class="form-control-search">search</mat-icon>
+        <input type="text" class="form-control" placeholder="Search for projects.." #input>
+    </div>
+</div>
+
+<mat-card appMaterialElevation appMaterialElevation class="cardclass">
+    <mat-card-content class="cardbutton">
+        <mat-icon (click)="addProject()">add_circle_outline</mat-icon>
+        <p>Add new project</p>
+    </mat-card-content>
+</mat-card>
+
+
+<div >
+    <mat-card class="carddata" *ngFor="let proj of projectArray|keyvalue">
+        <div class="title">
+            <mat-card-title>{{proj.value}}</mat-card-title>
+            <mat-divider></mat-divider>
+            <h5>Click to assign {{desc}} and {{name}} to the project</h5>
+        </div>
+        <button mat-icon-button (click)="arrowclick()" class="arrowbutton">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </mat-card>
+</div>
+

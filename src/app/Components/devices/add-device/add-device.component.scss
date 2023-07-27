@@ -1,0 +1,113 @@
+
+.add-device-container {
+    .sub-heading {
+        margin-bottom: 0px;
+    }  
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+    }
+    p {
+        color: #707070;
+        font-size: 12px;
+    }
+    
+    h4 {
+        color: #1B1534;
+        font-weight: bold;
+        display: inline-block;
+        margin: 0px;
+        padding: 0px;
+        font-size: 14px;        
+    }
+      .btn-style {
+        border-radius: 20px;
+        line-height: 2;
+        border: 2px solid #8a00e5;
+      }      
+
+      .add-btn {
+        position: absolute;
+        bottom: 10px;
+      }
+
+      .cancel-btn {
+        position: absolute;
+        bottom: 10px;
+        left: 90px;
+      }
+
+      .device-form {
+        .row {
+            margin: 0px 0px 10px 0px;            
+          }
+        .col-sm-4 {
+            padding-bottom: 10px;            
+        }
+
+        .add-location, .add-device {
+            background: #706f6f14;
+        }
+
+        label {
+            font-size: 13px;            
+        }
+        .form-select, .form-control {
+            line-height: 1;
+        }
+      }      
+
+      .btn-style.mat-button-disabled {        
+        border-color: rgba(0, 0, 0, 0.26);
+      }
+
+      label::after {
+        content:" *";
+        color: red;
+      }
+
+      label {
+        padding-bottom: 5px;
+      }
+
+      input, select {
+        font-size: 12px;
+      }
+
+      .form-select:focus, .form-control:focus {
+        box-shadow: none;
+      }
+
+      .ng-invalid.ng-touched {
+        border-color: red;
+      }
+
+      .add-btn-content .col-sm-4 {
+        padding-bottom: 0px;
+      }
+
+      .device-sub-content {
+        box-shadow: none;
+        border: none;
+        padding: 0px;
+        .tablesection {
+            .mat-column-device {
+                padding-left: 10px;
+            }
+            height: 148px;
+            .delete-button {
+                .mat-icon {                    
+                    font-size: 18px;
+                }
+            }
+            .mat-header-row {             
+              height: 38px;              
+            }
+            .mat-row {
+              height: 38px !important;
+            }
+        }        
+      } 
+}

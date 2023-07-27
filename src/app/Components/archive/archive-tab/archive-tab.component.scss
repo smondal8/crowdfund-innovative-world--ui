@@ -1,0 +1,100 @@
+.outerwrapper{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+
+    .title{
+        display: flex;
+        flex-direction: column;
+
+        h4{
+            font-weight: bolder;
+            margin-left: 15px;
+            font-family:'Arial';
+            font-size: 13px;
+        }
+    }
+}
+
+  .header{
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      h1{
+          color: #1B1534;
+          font-size: 17px;
+          font-weight: bold;
+      }
+      button
+      {
+          width: 15px;
+          height: 12px;
+          margin-top: -5.5px;
+      }
+
+  }
+
+
+  .mat-drawer-container
+  {
+    background-color: transparent !important;
+  }
+  .mat-drawer-content{
+    overflow:hidden !important;
+  }
+  .content{
+      display: flex;
+      flex-direction: column;
+
+      .tagGroup{
+          border: 0px;
+          max-width: 100%;
+          height: 100%;
+
+        #navstepstext{
+          font-weight: bolder;
+          font-size: 12px;
+        }
+
+        .mat-tab-link{
+          background-color:	transparent;
+          text-align: center;
+          color: black;
+          vertical-align: middle;
+          border: 1px solid #F3E5FD;
+          border-radius: 3px;
+          min-width: 98px !important;
+          height: 37px;
+          margin-left: 5px;
+        }
+        .mat-tab-label-active{
+          background: #F3E5FD;
+          font-weight: bolder;
+          color:#8a00e5;
+          opacity: 1 !important;
+        }
+        .mat-button{
+          justify-content: right !important;
+        }
+
+        .addbuttonStyle{
+          margin-left: auto;
+          min-width: 100px;
+          border-radius: 20px;
+          font-size: 14px;
+        }
+      }
+  }
+
+  .side-nav {
+    padding: 0 15px;
+  }
+  .close-side-nav-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #8a00e5;
+    font-size: 20px;
+  }
+

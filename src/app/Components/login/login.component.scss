@@ -1,0 +1,23 @@
+@import url('../../Shared/Styles/common-styles.scss');
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    padding: 1.8rem;
+    height: 56vh;
+  }
+
+  .mat-card{
+    width: 450px !important;
+    height: 277px !important;
+    top: 10%;
+  }
+
+  .mat-list-item {
+    font-size: 14px;
+}
+
+.login-card {
+  justify-content: center;
+  font-weight: 700;
+}

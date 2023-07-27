@@ -1,0 +1,66 @@
+.outerwrapper{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    .header{
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        h1{
+            color: #1B1534;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        button
+        {
+            width: 15px;
+            height: 12px;
+            margin-top: -5.5px;
+        }
+        
+    }
+
+    .content{
+        border: 1px solid #70707033;
+        box-shadow: 2px 4px 5px #00000026;
+        display: flex;
+        flex-direction: row;
+        gap: 3px;
+        flex: 1;
+        background-color: transparent;
+        .firstsection
+        {
+            width: 50%;
+            padding: 15px;
+            flex: 1 1 auto;
+        }
+        .defaultheight{
+            height: 390px;
+        }
+        .linebreaker{
+            margin-top: 50px;
+            height: 400px;
+            border-width: 2px;
+            background-color: #00000026;
+            width: 2px;
+        }
+        .secondsection{
+            width: 50%;
+            width: 50%;
+            height: 380px;
+            padding: 15px;
+            flex: 1 1 auto;
+            
+        }
+    }
+
+    .buttonsection{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        button{
+            border-radius: 5px;
+        }
+    }
+}

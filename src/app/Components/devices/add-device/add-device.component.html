@@ -1,0 +1,112 @@
+<div class="add-device-container">
+    <p class="sub-heading">Select predefined device, unit and enter location details to create new device.</p>
+    <hr>
+    <form class="device-form" [formGroup]="deviceForm" (ngSubmit)="addToPreview()">
+        <h4>Add Location</h4> 
+        <div class="row add-location">            
+            <div class="col-sm-4">
+                <label>Cabinet</label>
+                <input class="form-control" formControlName="cabinet" placeholder="Enter">
+            </div>
+            <div class="col-sm-4">
+                <label>Frame</label>
+                <input class="form-control" formControlName="frame" placeholder="Enter">
+            </div>
+            <div class="col-sm-4">
+                <label>Place</label>
+                <input class="form-control" formControlName="place" placeholder="Enter">
+            </div>
+        </div>
+        <h4>Add device</h4> 
+        <div class="row add-device"> 
+            <div class="col-sm-4">
+                <label>Device Type</label>          
+                <select class="form-select" formControlName="deviceType">        
+                    <option value="" disabled selected>Select</option>        
+                    <option *ngFor="let template of templates" [ngValue]="template">{{template}}</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label>Device version</label>          
+                <select class="form-select" formControlName="deviceVersion">        
+                    <option value="" disabled selected>Select</option>        
+                    <option *ngFor="let template of templates" [ngValue]="template">{{template}}</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label>Unit</label>          
+                <select class="form-select" formControlName="unit">        
+                    <option value="" disabled selected>Select</option>        
+                    <option *ngFor="let template of templates" [ngValue]="template">{{template}}</option>
+                </select>
+            </div>            
+            <div class="col-sm-4">
+                <label>Phase Template</label>          
+                <select class="form-select" formControlName="phaseTemplate">        
+                    <option value="" disabled selected>Select</option>        
+                    <option *ngFor="let template of templates" [ngValue]="template">{{template}}</option>
+                </select>
+            </div>
+        </div>        
+        <div class="row add-btn-content">
+            <div class="col-sm-4">            
+                <button class="btn-style add-table-btn" [disabled]="!deviceForm.valid" mat-stroked-button color="primary">Add to table</button>
+            </div>
+        </div>  
+    </form>
+    <div class="device-sub-content">
+        <h2>Preview - Add units and there phase templates</h2>       
+        <div class="tablesection w-full">
+            <table color="primary" mat-table [dataSource]="tabledata" #unitTable>
+                <ng-container matColumnDef="device">
+                    <th mat-header-cell *matHeaderCellDef>Device</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.device}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="version">
+                    <th mat-header-cell *matHeaderCellDef>Version</th>
+                    <td mat-cell *matCellDef="let element">{{element.version}}</td>
+                </ng-container>
+                <ng-container matColumnDef="unit">
+                    <th mat-header-cell *matHeaderCellDef>Unit</th>
+                    <td mat-cell *matCellDef="let element">{{element.unit}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="phase">
+                    <th mat-header-cell *matHeaderCellDef>Phase</th>
+                    <td mat-cell *matCellDef="let element">{{element.phase}}</td>
+                </ng-container>
+                <ng-container matColumnDef="cabinet">
+                    <th mat-header-cell *matHeaderCellDef>Cabinet</th>
+                    <td mat-cell *matCellDef="let element">{{element.cabinet}}</td>
+                </ng-container>
+                <ng-container matColumnDef="frame">
+                    <th mat-header-cell *matHeaderCellDef>Frame</th>
+                    <td mat-cell *matCellDef="let element">{{element.frame}}</td>
+                </ng-container>
+                <ng-container matColumnDef="place">
+                    <th mat-header-cell *matHeaderCellDef>Place</th>
+                    <td mat-cell *matCellDef="let element">{{element.place}}</td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element"> 
+                            <div class="delete-button">
+                                <button mat-icon-button (click)="delete(element)">
+                                    <mat-icon>remove_circle_outline</mat-icon>
+                                </button>                           
+                            </div>
+                        </td>
+                  </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>           
+        </div>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" [disabled]="tabledata && tabledata.length == 0" (click)="addDevice()" class="btn-style add-btn">Add</button>
+        <button mat-stroked-button color="primary" [disabled]="tabledata && tabledata.length == 0" (click)="cancel()" class="btn-style cancel-btn">Cancel</button>
+      </div>
+</div>

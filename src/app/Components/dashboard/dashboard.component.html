@@ -1,0 +1,43 @@
+<mat-expansion-panel color="primary">
+    <mat-expansion-panel-header mat-elevation-z8>Utilities</mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+        <mat-card appMaterialElevation appMaterialElevation class="cardclass">
+            <mat-card-content>
+                <mat-card-title>Sync Site Compasion</mat-card-title>
+            </mat-card-content>
+            <mat-card-content>
+                Sync User and Projects master data from Site Companion Application to Failsafe LogBook
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Click to Sync</button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-template>
+</mat-expansion-panel>
+
+<mat-expansion-panel color="primary">
+    <mat-expansion-panel-header mat-elevation-z8>Manage Templates</mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+        <div class="template">
+            <mat-card *ngFor="let item of carddata.templates" appMaterialElevation class="cardclass">
+                <mat-card-content>
+                    <mat-card-title>{{item.name}} Template <mat-icon (click)="Edit(item.name)" class="active-icon"> border_color</mat-icon></mat-card-title>
+                </mat-card-content>
+                <mat-card-content *ngIf="item.totalcount > 0">
+                    <p>Last Updated date: {{item.lastupdatedate | date}}</p>
+                    <div class="templatecount">
+                        <h1>{{item.totalcount}}</h1>
+                        <p>Templates</p>
+                    </div>
+                </mat-card-content>
+                <mat-card-content *ngIf="item.totalcount === 0">
+                    <p>Click on "Upload" to add {{item.name}} templates</p>
+                </mat-card-content>
+                
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="Update(item.name)">Upload</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </ng-template>
+</mat-expansion-panel>

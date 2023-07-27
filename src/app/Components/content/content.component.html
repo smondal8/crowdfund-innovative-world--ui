@@ -1,0 +1,10 @@
+<nav mat-tab-nav-bar class="tagGroup">
+  <div *ngIf="userLoggedIn">
+    <a mat-tab-link *ngFor="let tabItem of tabs" [routerLink]="tabItem.route"
+    routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+      <span id="navstepstext">{{tabItem.label}}</span>
+    </a>
+  </div>
+</nav>
+<router-outlet></router-outlet>

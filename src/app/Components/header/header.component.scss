@@ -1,0 +1,69 @@
+$layout-color: #f8f8f8;
+
+.header-styling{
+    background: #8957b5;
+    // font-weight: 7000;
+    /*border-bottom: 1px solid #D7D7CD;*/
+    color: $layout-color;
+    padding: 44px 40px;
+}
+
+// .mat-toolbar.mat-primary {
+//     background: #1b1534;
+//     color: #fff;
+//     height: 60px;
+//   }
+
+  .title-center {
+      flex: 1 1 auto;
+      text-align: center;
+      font-size: 26px;
+  }
+
+  .userprofile
+  {
+      background-color: transparent;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .profileimage
+  {
+      width: 35px;
+      border-radius: 50px;
+      height: 35px;
+  }
+
+  .userinfo
+  {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0px;
+
+      h5{
+        margin-top: 5px;
+        padding: 0px;
+        font-size: 15px;
+        display: inline;
+        border: 0px;
+      }
+
+      h6{
+        padding: 0px;
+        border: 0px;
+        display: inline;
+        font-size: 12px;
+        font-weight: lighter;
+        margin-top: -12px;
+      }
+
+      p{
+        font-size: 12px;
+        font-weight: lighter;
+      }
+  }

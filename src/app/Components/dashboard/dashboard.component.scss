@@ -1,0 +1,76 @@
+.cardclass
+{
+    width: 300px;
+    height: 230px;
+    background-color: #FAF6FC;
+    border-radius: 10px;
+    mat-card-title
+    {
+        font-size: 17px;
+        border-bottom: 1px solid black;
+    }
+    button{
+        border-radius: 50px;
+    }
+    .templatecount{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+        h1{
+            display: inline;
+            font-size: 60px;
+            color: #8A00E5;
+        }
+        p{
+            width: 100px;
+            align-self: flex-end;
+            border: 2px white solid;
+            background-color: white;
+            border-radius: 50px;
+            text-align: center;
+        }
+    }
+}
+
+.mat-expansion-panel
+{
+    margin: 10px;
+    background-color: white;
+    border: #f1f1f1 1px solid;
+    box-shadow: 2px gray;
+    mat-expansion-panel-header{
+        color: #8A00E5;
+        font-size: 15px;
+        font-weight: bold;
+    }
+}
+.mat-card{
+    display:flex;
+    flex-direction: column;
+  }
+
+.mat-card-title
+{
+    color: #1B1534;
+    font-size: 17px;
+    text-align: left;
+    font-weight: bold;
+    text-decoration: none;
+}
+.mat-card-content{
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+.template
+{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.active-icon{
+    color: #8A00E5;
+    font-size: 16px;
+}

@@ -1,0 +1,50 @@
+<div class="outer-section">
+    <div class="Left-Section">
+        <div class="header">
+            <button mat-icon-button color="primary">
+                <mat-icon [routerLink]="['/project/project-dashboard/device']">arrow_back</mat-icon>
+            </button>
+            <h1>Unit1</h1>
+        </div>
+        <div class="sub-header">
+            <a [routerLink]="['']">Project</a>
+            <span>></span>
+            <a [routerLink]="['/project/project-dashboard/unit']">Units</a>
+            <span>></span>
+            <a [routerLink]="['/project/project-dashboard/device']">Devices</a>
+        </div>
+        <div class="cardsection">
+            <div class="card" *ngFor="let phases of devicephaseList; let i = index">
+                <div class="numbered-section">
+                    <div class="numbered" *ngIf="(phases.validate !== 'Completed' && phases.validate !== 'InValidate' && phases.validate !== 'Skipped')" 
+                                          [ngClass]="{'disablednumber' : phases.validate !== 'InProgress'}">{{i + 1}}</div>
+                    <div class="numbered" *ngIf="phases.validate === 'Completed'">
+                        <mat-icon>done</mat-icon>
+                    </div>
+                    <div class="numbered disablednumber" *ngIf="(phases.validate === 'InValidate') || (phases.validate === 'Skipped')">
+                        <mat-icon>priority_high</mat-icon>
+                    </div>
+                    <div class="slash"></div>
+                </div>
+                <mat-card [ngClass]="{'enabledbackground' : phases.validate === 'InProgress'}" (click)="OnCardClick(phases, i)">
+                    <div class="title">
+                        <h2>{{phases.name}}</h2>
+                        <p *ngIf="phases.validate !== 'InActive'" [ngClass]="{'completebackground' : phases.validate === 'Completed',
+                                                                                 'disablebackgroung' : phases.validate === 'InValidate' || phases.validate === 'Skipped'}">
+                                                                                 {{phases.validate}}</p>
+                    </div>
+                    <div class="subTitle">
+                        <p>Username : Pankaj Pandey</p>
+                        <p>Date : {{date | date : 'MM/dd/yyyy'}}
+                            <mat-icon *ngIf="!isLastCompleted(phases) && phases.validate == 'Completed'" color="primary" class="add-step" (click)="openDialog(phases)">add_box</mat-icon>                            
+                        </p>
+                        
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div class="right-Section">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="wrapper">
+    <div class="firstsection">
+        <div class="title">
+            <h4>{{data.title}}</h4>
+            <p>{{data.subtitle}}</p>
+        </div>
+        <span class="example-spacer"></span>
+        <button mat-icon-button color="primary" mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div>
+        <select #project placeholder="Select"  class="optionsection" (change)="addCard(project.value)">
+            <option>Select Project</option>
+            <option *ngFor="let project of projects" value={{project.name}}> {{project.name}}</option>          
+        </select>     
+    </div>
+
+
+    <div class="info">
+        <mat-icon aria-hidden="false">info</mat-icon>
+        <p>{{data.info}}</p>
+    </div>
+
+    <div class="buttonsection">
+        <button mat-raised-button color="primary" class="button-add" (click)="addProject()">Add project</button>
+        <button mat-raised-button color="primary" class="button-cancel" mat-dialog-close
+            style="margin-left: 5px;">Cancel</button>
+    </div>
+    
+</div>

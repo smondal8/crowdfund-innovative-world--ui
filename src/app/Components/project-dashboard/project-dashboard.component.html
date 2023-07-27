@@ -1,0 +1,34 @@
+<div class="outerwrapper">
+    <mat-drawer-container>
+        <mat-drawer class="side-nav" #drawer position="end" [autoFocus]="false">
+            <div style="width: 500px;">
+                <h3 *ngIf="currentTab == 'unit'" class="side-nave-heading">Add unit</h3>
+                <h3 *ngIf="currentTab == 'device'" class="side-nave-heading">Add device</h3>
+                <mat-icon class="close-side-nav-icon" (click)="drawer.close()">close</mat-icon>                
+                <app-add-unit (closeDrawer)="closeDrawer()" *ngIf="currentTab == 'unit'"></app-add-unit>
+                <app-add-device (closeDrawer)="closeDrawer()" *ngIf="currentTab == 'device'"></app-add-device>
+            </div>
+        </mat-drawer>
+        <mat-drawer-content>
+            <div class="header">
+                <button mat-icon-button color="primary" (click)="OnBackNavigation()">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+                <h1>{{Title}}</h1>
+            </div>
+            <div class="content">
+                <nav mat-tab-nav-bar class="tagGroup">
+                      <a mat-tab-link *ngFor="let tabItem of tabs"
+                      routerLinkActive #rla="routerLinkActive" [routerLink]="tabItem.route"
+                        [active]="rla.isActive">
+                        <span id="navstepstext">{{tabItem.label}}</span>
+                      </a>
+                      <a class="addbuttonStyle" mat-raised-button color="primary" (click)="drawer.open()">+ Add {{currentTab}}</a>
+                  </nav>
+                  <div class="routedsection">
+                    <router-outlet></router-outlet>
+                  </div>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

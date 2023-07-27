@@ -1,0 +1,91 @@
+<div class="outer-wrapper">
+    <div class="devicedetailsection">
+        <div class="leftsection">
+            <h1>Device : BRAUN 1.1</h1>
+            <p>Location Details: <span>Cabinet : C1</span><span>|</span><span>Frame : F2</span><span>|</span><span>Place : P2</span></p>
+        </div>
+        <button mat-stroked-button color="primary" [disabled]="activePhase.validate != 'InProgress'" class="skip-btn"  (click)="onSkip()">Skip</button>
+        <button mat-stroked-button color="primary" [disabled]="isInvalidateActive(activePhase)"  (click)="OnInvalidate()">Invalidate</button>
+    </div>
+
+    <div class="tablesection mat-elevation-z8">
+        <div class="Title">
+            <h1>{{activePhase.name}}</h1>
+            <p [ngClass]="{'completebackground' : activePhase.validate === 'Completed',
+                            'inactivebackground' : activePhase.validate === 'InValidate'}">{{activePhase.validate}}</p>
+        </div>
+        <div class="content">
+          <table class="table commision-table-content" mat-table [dataSource]="datasource">
+            <ng-container [matColumnDef]="col.name" *ngFor="let col of columnSchema">
+              <th mat-header-cell *matHeaderCellDef [ngSwitch]="col.name">
+                <span *ngSwitchDefault>{{ col.name }}</span>
+              </th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <div [ngSwitch]="col.type" *ngIf="isvalidated">
+                  <span *ngSwitchCase="'date'">
+                    {{ element[col.name] | date: 'mediumDate' }}
+                  </span>
+                  <span *ngSwitchCase="'header'">
+                    {{GetRowElement(i)}}
+                  </span>
+                  <div *ngSwitchCase="'signature'">                   
+                    <div class="SignatureHolder">
+                      <img [src]="element[col.name]">
+                    </div>
+                  </div> 
+                  <span *ngSwitchDefault>
+                    {{ element[col.name] }}
+                  </span>
+                </div>
+                <div [ngSwitch]="col.type" *ngIf="!isvalidated">
+                  <mat-form-field class="form-input" *ngSwitchCase="'date'">
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      [(ngModel)]="element[col.name]"
+                    />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <span *ngSwitchCase="'header'">
+                    {{GetRowElement(i)}}
+                  </span>
+                  <div *ngSwitchCase="'signature'">
+                    <div class="BrowseHolder" *ngIf="!element[col.name]">
+                      <app-browse [TitleDisplaySts] = "false"  [FileConfig]="imageconfig" (FileUploadEvent)="OnFileAdd($event, element, col.name)"></app-browse>
+                    </div>
+                    <div class="SignatureHolder" *ngIf="element[col.name]">
+                      <img [src]="element[col.name]">
+                    </div>
+                  </div>                  
+                  <mat-form-field class="form-input" *ngSwitchDefault>
+                    <input matInput [type]="col.type" [(ngModel)]="element[col.name]"
+                          (change)="inputHandler($event, element.id, col.name)"/>
+                  </mat-form-field>
+                </div>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+        <div class="signature">
+          <div class="signature-header">
+            <h1>Signatue of the test officer</h1>
+            <p>Date : {{date | date : 'MM/dd/yyyy'}}</p>
+          </div>
+          <div class="BrowseHolder" *ngIf="!imageurl">
+            <app-browse [TitleDisplaySts] = "false" [FileConfig]="imageconfig" (FileUploadEvent) = "OnFileAdd($event)"></app-browse>
+          </div>
+          <div class="SignatureHolder" *ngIf="imageurl">
+            <img [src]="imageurl">
+          </div>
+        </div>
+
+        <div class="buttonsection">
+          <button mat-raised-button *ngIf="activePhase.validate === 'InProgress'" color="primary" class="save-table-btn" (click)="OnSaveButtonClick()">Save</button>
+          <button mat-raised-button *ngIf="activePhase.validate === 'InProgress'" [disabled]="!imageurl" color="primary" class="save-table-btn" (click)="OnSubmitButtonClick()">Submit</button>
+          <button mat-stroked-button color="primary">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="outerwrapper">
+    <div class="header">
+        <button mat-icon-button color="primary" (click)="OnBackClick()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1>Edit {{mode.toLowerCase()}} template</h1>
+    </div>
+
+    <div class="content">
+        <h2>Existing {{mode.toLowerCase()}} template details</h2>
+        <div class="info">
+            <mat-icon aria-hidden="false">info</mat-icon>
+            <p>Deleting uploaded file permanently from the {{mode.toLowerCase()}} template</p>
+        </div>
+
+        <div class="tablesection mat-elevation-z8 w-full">
+          <table color="primary" mat-table [dataSource]="tabledata" #table>
+            <ng-container matColumnDef="phasetemplate">
+                <th mat-header-cell *matHeaderCellDef>{{mode}} template</th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="with-icon">
+                        <mat-icon>description</mat-icon>{{element.name}}
+                      </div>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Updated date</th>
+                <td mat-cell *matCellDef="let element">{{element.uploaddate | date:'MM/dd/yyyy hh:mm:ss a'}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <div class="delete-button">
+                            <button mat-icon-button (click)="deletealert(element)">
+                                <mat-icon>delete</mat-icon>Delete
+                            </button>
+                            <button mat-icon-button>
+                                <mat-icon>download</mat-icon>Download
+                            </button>
+                        </div>
+                    </td>
+              </ng-container>
+    
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+    </div>
+</div>

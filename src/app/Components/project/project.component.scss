@@ -1,0 +1,125 @@
+.firstsection {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+
+
+    .title {
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+            font-weight: bold;
+            margin-left: 20px;
+            margin-top: 10px;
+            font-family: 'Arial';
+        }
+    }
+
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+
+    .has-search .form-control {
+        padding-left: 2rem;
+        line-height: 1;
+        font-size: 14px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        width: 95%;
+    }
+
+    .has-search .form-control-search {
+        position: absolute;
+        margin-top: 10px;
+        z-index: 2;
+        display: block;
+        width: 2.375rem;
+        height: 2.375rem;
+        line-height: 2.17rem;
+        text-align: center;
+        pointer-events: none;
+        color: #212529;
+
+    }
+}
+
+
+.cardclass {
+    left: 25px;
+    width: 200px;
+    height: 180px;
+    background-color: #FAF6FC;
+    border-radius: 4px;
+    float: left;
+
+    .cardbutton {
+
+
+        .mat-icon {
+            color: #8A00E5;
+            width: 100%;
+            display: flex;
+            flex: 1 1 auto;
+            justify-content: center;
+            align-items: center;
+            margin-top: 45px;
+            //font-weight: bold;
+        }
+
+        p {
+            color: #8A00E5;
+            width: 100%;
+            display: flex;
+            flex: 1 1 auto;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+    }
+
+    .mat-card {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.carddata {
+    left: 50px;
+    width: 200px;
+    height: 180px;
+    background-color: #FAF6FC;
+    border-radius: 4px;
+    float: left;
+    box-shadow: 3px 3px 6px #00000029;
+    margin: 0px 23px 23px 0px ;
+
+    .mat-card-title {
+        font-size: 13px;
+        font-family: Arial, serif;
+        font-weight: bold;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .mat-divider {
+        border: 1px solid #CECECE;
+        margin-top: 3px;
+    }
+
+    h5 {
+        font-family: Arial, serif;
+        margin: 0px;
+        padding: 0px;
+        font-size: 10px;
+        margin-top: 10px;
+    }
+}
+
+.arrowbutton {
+    margin-top: 55px;
+    margin-left: 140px;
+    color: #8A00E5;
+}

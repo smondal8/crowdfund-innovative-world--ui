@@ -1,0 +1,11 @@
+
+<div mat-dialog-content> 
+  <mat-form-field appearance="fill">
+    <mat-label>Phase name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions> 
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" class="btn-style add-btn">Add</button>
+  <button mat-stroked-button color="primary" (click)="onNoClick()" class="btn-style cancel-btn">Cancel</button>
+</div>

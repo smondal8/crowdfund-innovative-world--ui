@@ -1,0 +1,21 @@
+<div class="outerwrapper">
+    <div class="header">
+        <button mat-icon-button color="primary" (click)="OnBackNavigation()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1>{{Title}}</h1>
+    </div>
+    <div class="content mat-elevation-z8">
+        <div class="firstsection" [ngClass]="{defaultheight : !tabledisplaysts}">
+            <app-browse [TitleDisplaySts] = "true" [Template]="mode" [FileConfig]="FileConfig" (FileUploadEvent) = "OnFileAdd($event)"></app-browse>
+        </div>
+        <div class="linebreaker" *ngIf="tabledisplaysts"></div>
+        <div class="secondsection" *ngIf="tabledisplaysts">
+            <app-table [Template]="mode" [Tabledata] = "tabledata"></app-table>
+        </div>
+    </div>
+    <div class="buttonsection">
+        <button mat-raised-button color="primary" (click)="OnSaveButtonClick()">Save</button>
+        <button mat-raised-button color="primary">Cancel</button>
+    </div>
+</div>
