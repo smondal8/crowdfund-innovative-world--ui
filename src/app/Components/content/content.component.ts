@@ -12,10 +12,15 @@ export interface TabItem {
 export class ContentComponent implements OnInit {
 
   @Input() userLoggedIn : boolean;
+  @Input() userName : String;
 
   constructor() { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("userId") != null){
+      this.userLoggedIn = true;
+      this.userName = sessionStorage.getItem('userId');
+  }
   }
 
   tabs: TabItem[] = [

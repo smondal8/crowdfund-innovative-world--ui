@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './Shared/Services/auth.service';
 import { DataService } from './Shared/Services/data.service';
-import { TokenService } from './Shared/Services/token.service';
+import { TokenService } from 'src/app/Service/token.service';
 
 export interface TabItem {
   label: string;
@@ -18,7 +18,7 @@ export interface TabItem {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'logbook';
+  title = 'CrowdFundUI';
   tabs: TabItem[] = []
   verifyUserDetails = false;
   userLoggedIn = false;
@@ -30,12 +30,20 @@ export class AppComponent implements OnInit {
 
   // Commented for the time being, once backend authentication is ready
   ngOnInit() {
-    if(sessionStorage.getItem("user") != null){
+    this.tokenService.subject.subscribe(
+      data=>{
+        if(data){
+          this.userLoggedIn = data;
+        }        
+      }
+    )
+    if(sessionStorage.getItem("userId") != null){
       this.userLoggedIn = true;
     }
     else{
       this.userLoggedIn = false;
     }
+
   }
   logout(userstate : any){
     this.userLoggedIn = userstate;

@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  baseURL: '',
+  baseURL: 'http://localhost:8082/crowdfundapi',
 };

@@ -27,7 +27,7 @@ import { AuthService } from '../Shared/Services/auth.service';
     canActivate(route: ActivatedRouteSnapshot) {
       // Check to see if a user has a valid token
       //if (this.authService.isAuthenticated()) {
-        if(sessionStorage.getItem("user") != null){
+        if(sessionStorage.getItem("userId") != null){
             return true;
         }
         // If not, they redirect them to the login page

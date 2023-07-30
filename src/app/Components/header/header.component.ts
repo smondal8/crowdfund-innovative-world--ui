@@ -9,13 +9,16 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   @Input() userLoggedIn : boolean;
   @Output() logoutEmitter = new EventEmitter<any>();
-  userName : String;
+  @Input() userName : String;
   constructor(
   private router: Router
   ){ }
 
-  ngOnInit(): void {
-    this.userName = sessionStorage.getItem('user');
+  ngOnInit(): void {    
+    if(sessionStorage.getItem("userId") != null){
+        this.userLoggedIn = true;
+        this.userName = sessionStorage.getItem('userId');
+    }
   }
 
   signOut(){

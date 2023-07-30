@@ -15,10 +15,12 @@ import { CommunicationService } from './Shared/Services/communication.service';
 import { AuthService } from './Shared/Services/auth.service';
 import { LoginComponent } from './Components/login/login.component';
 import { ProjectService } from './Shared/Services/project.service';
-import { FormsModule } from '@angular/forms';
-import { AuthGuard } from './Authentication/auth.Guard';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { AuthGuard } from './Authentication/auth.guard';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {TokenService} from './Service/token.service';
+import { RestService } from './Service/rest.service';
 
 
 @NgModule({
@@ -43,9 +45,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     HttpClientModule,
     FormsModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule 
   ],
-  providers: [DashboardService, CommunicationService, AuthService, ProjectService, AuthGuard],
+  providers: [DashboardService, CommunicationService, AuthService, ProjectService, AuthGuard, TokenService, RestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
