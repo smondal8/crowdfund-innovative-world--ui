@@ -63,7 +63,7 @@ export class ProjectComponent implements OnInit {
       }
     })  
     dialogref.afterClosed().subscribe(result => {
-      console.log("closed");
+      this.ngOnInit();
     }) 
    }
 
