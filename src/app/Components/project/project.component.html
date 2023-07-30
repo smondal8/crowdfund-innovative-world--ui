@@ -18,13 +18,21 @@
 
 
 <div >
-    <mat-card class="carddata" *ngFor="let proj of projectArray|keyvalue">
+    <mat-card class="carddata" *ngFor="let proj of projectArray">
         <div class="title">
-            <mat-card-title>{{proj.value}}</mat-card-title>
+            <mat-card-title>{{proj.projectName}}</mat-card-title>
             <mat-divider></mat-divider>
-            <h5>Click to assign {{desc}} and {{name}} to the project</h5>
+            <br>
+            <div>
+                <h4>{{proj.projectDescription}}</h4>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <div>
+                <h5>PROJECT GOAL (INR) - </h5><h3>{{proj.projectTarget}}</h3>
+            </div>
         </div>
-        <button mat-icon-button (click)="arrowclick()" class="arrowbutton">
+        <button mat-icon-button class="arrowbutton">
             <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
     </mat-card>

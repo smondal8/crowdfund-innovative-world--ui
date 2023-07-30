@@ -1,20 +1,30 @@
-<div class="outerwrapper">
+<div class="firstsection">
     <div class="title">
-        <h4>{{title}}</h4>
+        <h4>Archived Projects List</h4>
     </div>
-    
-    <mat-drawer-container>
-        <mat-drawer-content>        
-            <div class="content">
-                <nav mat-tab-nav-bar class="tagGroup">
-                      <a mat-tab-link *ngFor="let tabItem of tabs"
-                      routerLinkActive #rla="routerLinkActive" [routerLink]="tabItem.route"
-                        [active]="rla.isActive">
-                        <span id="navstepstext">{{tabItem.label}}</span>
-                      </a> 
-                </nav>
-                  <router-outlet></router-outlet>
-            </div>
-        </mat-drawer-content>
-    </mat-drawer-container>
+    <span class="example-spacer"></span>
+    <div class="form-group has-search">       
+        <mat-icon matSuffix class="form-control-search">search</mat-icon>
+        <input type="text" class="form-control" placeholder="Search for projects.." #input>
+    </div>
 </div>
+
+
+<div >
+    <mat-card class="carddata" *ngFor="let proj of projectArray">
+        <div class="title">
+            <mat-card-title>{{proj.projectName}}</mat-card-title>
+            <mat-divider></mat-divider>
+            <br>
+            <div>
+                <h4>{{proj.projectDescription}}</h4>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <div>
+                <h5>PROJECT GOAL (INR) - </h5><h3>{{proj.projectTarget}}</h3>
+            </div>
+        </div>
+    </mat-card>
+</div>
+

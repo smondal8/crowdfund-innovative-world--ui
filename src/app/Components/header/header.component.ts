@@ -10,6 +10,8 @@ export class HeaderComponent implements OnInit {
   @Input() userLoggedIn : boolean;
   @Output() logoutEmitter = new EventEmitter<any>();
   @Input() userName : String;
+  @Input() fullname : string;
+  @Input() role : string;
   constructor(
   private router: Router
   ){ }
@@ -17,7 +19,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {    
     if(sessionStorage.getItem("userId") != null){
         this.userLoggedIn = true;
-        this.userName = sessionStorage.getItem('userId');
+        //this.userName = sessionStorage.getItem('userId');
+        this.fullname = sessionStorage.getItem('userName');
+        this.role = sessionStorage.getItem('role');
+
     }
   }
 

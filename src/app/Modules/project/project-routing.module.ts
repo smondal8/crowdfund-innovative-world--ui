@@ -9,18 +9,8 @@ import { UnitsComponent } from 'src/app/Components/units/units.component';
 
 const routes: Routes = 
 [{ path: '', component: ProjectComponent },
-  { path: 'project-dashboard', component: ProjectDashboardComponent, children:[
-  {path:'', redirectTo:'unit', pathMatch:'full'},
-  {path :'unit', component: UnitsComponent},
-  {path :'device', component :DevicesComponent}
-] },
-{
-  path : ':deviceid', component: DeviceCommissionComponent,
-  children:[
-    {
-      path : ':id', component: CommisiontableComponent}
-  ]
-}];
+  { path: 'project-dashboard', component: ProjectDashboardComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

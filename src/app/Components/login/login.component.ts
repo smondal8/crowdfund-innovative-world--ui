@@ -17,7 +17,7 @@ import { RestService } from 'src/app/Service/rest.service';
 export class LoginComponent implements OnInit {
   @Input() userLoggedIn = false ;
   verifyUserDetails = false;
-  redirectURL = window.location.origin + '/dashboard';
+  redirectURL = window.location.origin + '/profile';
   selected : any;
   public loginFormGroup: FormGroup;
 
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       result=> {
         this.tokenService.saveUser(result);
         this.tokenService.passValue(true);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/profile']);
       },
       error=>{
         this.toastr.error("Wrong userid or passowrd");

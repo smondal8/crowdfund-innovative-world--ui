@@ -17,7 +17,7 @@ const routes: Routes = [
     }
   },
   {
-    path:'dashboard',
+    path:'profile',
     canActivate: [AuthGuard],
     data : {
       userRoles : []

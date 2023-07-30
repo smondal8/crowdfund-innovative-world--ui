@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/",
+            "outputPath": "dist/logbook",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "crowdfund:build:production"
+              "browserTarget": "logbook:build:production"
             },
             "dev": {
-              "browserTarget": "crowdfund:build:dev"
+              "browserTarget": "logbook:build:dev"
             }
           },
           "defaultConfiguration": "dev"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "crowdfund:build"
+            "browserTarget": "logbook:build"
           }
         },
         "test": {

@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectService } from 'src/app/Shared/Services/project.service';
 import { AddProjectComponent } from '../add-project/add-project.component';
 import { filter } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
+import { RestService } from 'src/app/Service/rest.service';
+import { TokenService } from 'src/app/Service/token.service';
 
 export interface projectData{
   id:number;
@@ -18,8 +19,8 @@ export interface projectData{
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-  projects: { name: string; }[];
-  projectArray = new Array();
+  projects: any[];
+  projectArray: any[];//new Array();
  
   desc='log items';
   name='device';
@@ -30,14 +31,26 @@ export class ProjectComponent implements OnInit {
   tabledata: any;
   
   constructor(public dialog: MatDialog,
-    private _projectservice: ProjectService,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private toastr: ToastrService
-    ) {this.dataSource = new MatTableDataSource(this.projectArray); }
+    private toastr: ToastrService,
+    private restService: RestService,
+    private tokenService: TokenService
+    ) {
+      //this.dataSource = new MatTableDataSource(this.projectArray); 
+    }
 
   ngOnInit(): void {
-    this.projects = this._projectservice.projects;
+    this.projects = ["Windstorm","Bombasto","Magneta","Tornado"];
+    this.restService.getProject(this.tokenService.getUser()).subscribe(
+      result=> {
+        this.projectArray = result.projects;
+      },
+      error=>{
+        this.toastr.error("Something wrong!!");
+      }
+    )
+
   }
 
   addProject():void{
@@ -51,16 +64,11 @@ export class ProjectComponent implements OnInit {
       }
     })  
     dialogref.afterClosed().subscribe(result => {
-      console.log(this.projectArray,'aads')
       if(result){
         if(!this.projectArray.includes(result.name))
         this.projectArray.push(result.name)
       }
     }) 
    }
-
-   arrowclick() {
-    this._router.navigate(['project-dashboard'], { relativeTo: this._activatedRoute });
-  }
 
 }

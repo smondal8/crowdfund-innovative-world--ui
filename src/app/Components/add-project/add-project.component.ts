@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddProjectData } from 'src/app/Models/Interfaces/AddProjectData';
-import { ProjectService } from 'src/app/Shared/Services/project.service';
+
 
 
 @Component({
@@ -16,11 +16,9 @@ export class AddProjectComponent implements OnInit {
   projectList:any[];
 
   constructor(public dialogRef: MatDialogRef<AddProjectComponent>,
-    private _projectservice: ProjectService,
     @Inject(MAT_DIALOG_DATA) public data: AddProjectData) { }
 
   ngOnInit(): void {
-    this.projects=this._projectservice.projects;  
   }
 
   addCard(projectName:any){

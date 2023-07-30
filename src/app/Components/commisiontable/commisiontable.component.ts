@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { datastructure, devicephasemodel, tabledata } from 'src/app/Models/Interfaces/ProjectModel';
 import { DevicePhase } from 'src/app/Models/ViewModels/ProjectClass';
-import { ProjectService } from 'src/app/Shared/Services/project.service';
+
 import { map, switchMap } from 'rxjs';
 import { ImageConfig } from '../../../app.config';
 import { FileClass } from 'src/app/Models/ViewModels/FileClass';
@@ -30,26 +30,12 @@ export class CommisiontableComponent implements OnInit, AfterViewInit {
   date: Date = new Date();
   devicephaseList: devicephasemodel[];
 
-  constructor(private _projectservice: ProjectService, private activatedRoute: ActivatedRoute,
+  constructor( private activatedRoute: ActivatedRoute,
     public dialog: MatDialog, private toastr: ToastrService) {
   }
   ngAfterViewInit(): void {
   }
   ngOnInit(): void {
-    this.activatedRoute.params.pipe(switchMap(routedata => {
-      this.activePhase = this._projectservice.GetActiveProjectphase();
-      return this._projectservice.GetProjectTableData("1", "1", "1", this.activePhase.id).pipe(map(tabledata => ({ routedata, tabledata })))
-    })).subscribe(({ routedata, tabledata }) => {
-      this.isvalidated = this.activePhase.validate.toLowerCase() !== "completed" ? false : true;
-      this.rows = tabledata.row;
-      this.columns = tabledata.columns;
-      this.columnSchema = this.columns;
-      this.displayedColumns = this.columns.map(x => x.name);
-      this.imageurl = this.activePhase.imageUrl;
-      this.createdatasource(this.columns, tabledata);
-    });
-
-    this.getProjectPhases();
   }
 
   createdatasource(columns_i: datastructure[], tabledata: tabledata) {
@@ -80,9 +66,6 @@ export class CommisiontableComponent implements OnInit, AfterViewInit {
   }
 
   getProjectPhases() {
-    this._projectservice.GetProjectPhases("1", "1", "1").subscribe((data: devicephasemodel[]) => {
-      this.devicephaseList = data;
-    });
   }
 
   isInvalidateActive(activePhase) {
@@ -119,17 +102,7 @@ export class CommisiontableComponent implements OnInit, AfterViewInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result && result.reason) {
-        this._projectservice.SetProjectTableData("1", "1", "1", this.activePhase.id, "InProgress", [], "").subscribe((sts) => {
-          if (sts) {
-            this.toastr.info(`'${this.activePhase.name} is invalidated and moved to archive! \n This phase is now active and can restart the process.'`)
-            this._projectservice.phasevalidationsubject.next("InProgress");
-            this.isvalidated = false;
-          }
-        });
-      }
-    });    
+      
   }
 
   onSkip() {
@@ -147,34 +120,17 @@ export class CommisiontableComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.reason) {
-        this._projectservice.SetProjectTableData("1", "1", "1", this.activePhase.id, "Skipped", [], "").subscribe((sts) => {
-          if (sts) {
-            this.toastr.info(`'${this.activePhase.name} is skipped and moved to archive! \n This phase is now active and can restart the process.'`)
-            this._projectservice.phasevalidationsubject.next("Skipped");
-            this.isvalidated = false;
-          }
-        });
-      }
+
     });
   }
 
 
   OnSubmitButtonClick() {
-    this._projectservice.SetProjectTableData("1", "1", "1", this.activePhase.id, "Completed", this.datasource.data, this.imageurl).subscribe((sts) => {
-      if (sts) {
-        this.toastr.success(`'${this.activePhase.name}' is completed successfully!`)
-        this._projectservice.phasevalidationsubject.next("Completed");
-      }
-    })
+
   }
 
   OnSaveButtonClick() {
-    this._projectservice.SetProjectTableData("1", "1", "1", this.activePhase.id, "InProgress", this.datasource.data, this.imageurl).subscribe((sts) => {
-      if (sts) {
-        this.toastr.success(`'${this.activePhase.name}' is saved successfully!`)       
-      }
-    })
+
   }
 
   OnFileAdd(_file: FileClass[], row?: any, columnName?: any) {

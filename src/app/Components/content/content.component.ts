@@ -25,15 +25,15 @@ export class ContentComponent implements OnInit {
 
   tabs: TabItem[] = [
     {
-      label: 'DashBoard',
-      route: '/dashboard',
+      label: 'FundRaiser Profile',
+      route: '/profile',
     },
     {
-      label: 'Project',
+      label: 'Current Projects',
       route: '/project',
     },
     {
-      label: 'Archive',
+      label: 'Archive Projects',
       route: '/archive',
     }
   ];

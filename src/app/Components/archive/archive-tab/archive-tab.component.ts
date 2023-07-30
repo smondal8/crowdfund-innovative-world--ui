@@ -5,6 +5,9 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { filter } from 'rxjs';
 import { ArchiveService } from 'src/app/Shared/Services/archive.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { RestService } from 'src/app/Service/rest.service';
+import { TokenService } from 'src/app/Service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-archive-tab',
@@ -15,37 +18,34 @@ export class ArchiveTabComponent implements OnInit {
 
   tabledata: any;
   message:any;
-  title='Archived - All';
+  title='Archived Projects';
   
   tabs : TabItem[]= []
   currentTab = '';
   currentRoute : string;
+  projectArray: any[];
+
   @ViewChild('drawer') drawer: MatDrawer;
 
   constructor(private router : Router,
     private _activatedRoute: ActivatedRoute,
-    private archiveService:ArchiveService) { 
-      this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd)).subscribe((event) => {
-              this.currentTab = event["urlAfterRedirects"].split('/').pop();});
+    private archiveService:ArchiveService,
+    private restService: RestService,
+    private tokenService: TokenService,
+    private toastr: ToastrService) { 
+      
     }
 
   ngOnInit(): void {
+    this.restService.getProject(this.tokenService.getUser()).subscribe(
+      result=> {
+        this.projectArray = result.archivedProjects;
+      },
+      error=>{
+        this.toastr.error("Something wrong!!");
+      }
+    )
 
-    this.tabs=[
-      {
-        label:'Units',
-        route:'/archive/units'
-      },
-      {
-        label:'Devices',
-        route:'/archive/devices'
-      },
-      {
-        label:'Phases of devices',
-        route:'/archive/phasesofdevices'
-      },
-    ]
   }
 
 

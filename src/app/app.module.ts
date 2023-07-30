@@ -10,17 +10,17 @@ import { ContentComponent } from './Components/content/content.component';
 import { SharedModule } from './Modules/Shared/shared.module';
 import { DashboardService } from './Shared/Services/dashboard.service';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommunicationService } from './Shared/Services/communication.service';
 import { AuthService } from './Shared/Services/auth.service';
 import { LoginComponent } from './Components/login/login.component';
-import { ProjectService } from './Shared/Services/project.service';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { AuthGuard } from './Authentication/auth.guard';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {TokenService} from './Service/token.service';
 import { RestService } from './Service/rest.service';
+import { TokenInterceptor } from './Service/token-interceptor.service';
 
 
 @NgModule({
@@ -48,7 +48,13 @@ import { RestService } from './Service/rest.service';
     MatFormFieldModule,
     ReactiveFormsModule 
   ],
-  providers: [DashboardService, CommunicationService, AuthService, ProjectService, AuthGuard, TokenService, RestService],
+  providers: [DashboardService, CommunicationService, AuthService, AuthGuard, TokenService, RestService,
+  {
+    provide : HTTP_INTERCEPTORS,
+    useClass : TokenInterceptor,
+    multi : true 
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

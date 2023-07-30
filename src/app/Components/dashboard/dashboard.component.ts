@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DashBoardModule } from 'src/app/Models/Interfaces/DashBoardCardModel';
 import { DashboardService } from 'src/app/Shared/Services/dashboard.service';
+import { RestService } from 'src/app/Service/rest.service';
+import { TokenService } from 'src/app/Service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,36 +14,34 @@ import { DashboardService } from 'src/app/Shared/Services/dashboard.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  carddata : DashBoardModule;
-  dashboardsubscription$ : Subscription;
+  aboutme : string;
+  city: any;
+  phone: any;
+  usertype: any;
   constructor(private _router: Router,
               private _activatedRoute:ActivatedRoute,
-              private _dashboardservice : DashboardService) {
+              private _dashboardservice : DashboardService,
+              private restService: RestService,
+              private tokenService: TokenService,
+              private toastr: ToastrService) {
    }
 
   ngOnDestroy(): void {
-    if(this.dashboardsubscription$)
-    {
-      this.dashboardsubscription$.unsubscribe();
-    }
+
   }
 
   ngOnInit(): void {
-    this.dashboardsubscription$ = this._dashboardservice.GetTemplateData().
-                                  subscribe((data : DashBoardModule)=>{
-                                  this.carddata = data;
-    });
-  }
-
-  Update(templatename: string)
-  {
-    this._router.navigate(['upload'], 
-    {relativeTo: this._activatedRoute, queryParams:{mode : templatename}});
-  }
-
-  Edit(templatename: string){
-    this._router.navigate(['edit'],
-     {relativeTo: this._activatedRoute, queryParams:{mode: templatename}});
+    this.restService.fetchProfile(this.tokenService.getUser()).subscribe(
+      result=> {
+        this.aboutme = result.aboutMe;
+        this.city = result.city;
+        this.phone = result.phone;
+        this.usertype = result.userType;
+      },
+      error=>{
+        this.toastr.error("Something wrong !!");
+      }
+    )
   }
 
 }
