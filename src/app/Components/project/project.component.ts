@@ -55,19 +55,15 @@ export class ProjectComponent implements OnInit {
 
   addProject():void{
     let dialogref = this.dialog.open(AddProjectComponent, {
-      width: '430px',
-      height: '350px',
+      width: '500px',
+      height: '550px',
       data: {
         title: "Add new Project",
-        subtitle: `Project Name-ID`,
-        info: `Adding project will map the project to "Site companion" application`
+        info: `User can create project to add into the app`
       }
     })  
     dialogref.afterClosed().subscribe(result => {
-      if(result){
-        if(!this.projectArray.includes(result.name))
-        this.projectArray.push(result.name)
-      }
+      console.log("closed");
     }) 
    }
 
