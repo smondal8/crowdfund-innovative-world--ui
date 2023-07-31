@@ -33,6 +33,10 @@ export class RestService {
   return this.http.get<any>(this.baseURL + '/getProject/' + userId,this.httpOptions);
  }
 
+ getAllProject(): Observable<any> {
+  return this.http.get<any>(this.baseURL + '/getAllProject',this.httpOptions);
+ }
+
  createProject(userId,projectForm): Observable<any> {
   return this.http.post<any>(this.baseURL + '/createProject/' + userId, projectForm, this.httpOptions);
  }

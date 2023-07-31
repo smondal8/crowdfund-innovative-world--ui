@@ -44,18 +44,28 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     if(this.tokenService.getRole() === "Funder"){
       this.isFunder = true;
+      this.restService.getAllProject().subscribe(
+        result=> {
+          this.projectArray = result;
+        },
+        error=>{
+          this.toastr.error("Something wrong!!");
+        }
+      )
     }
     else{
       this.isFunder = false;
+      this.restService.getProject(this.tokenService.getUser()).subscribe(
+        result=> {
+          this.projectArray = result.projects;
+        },
+        error=>{
+          this.toastr.error("Something wrong!!");
+        }
+      )
     }
-    this.restService.getProject(this.tokenService.getUser()).subscribe(
-      result=> {
-        this.projectArray = result.projects;
-      },
-      error=>{
-        this.toastr.error("Something wrong!!");
-      }
-    )
+
+    
 
   }
 
@@ -71,6 +81,20 @@ export class ProjectComponent implements OnInit {
     dialogref.afterClosed().subscribe(result => {
       this.ngOnInit();
     }) 
+   }
+
+   fundPayment(projectId : number):void{
+    let dialogref = this.dialog.open(AddProjectComponent, {
+      width: '500px',
+      height: '550px',
+      data: {
+        title: "Add new Project",
+        info: `User can create project to add into the app`
+      }
+    })  
+    dialogref.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
    }
 
 }

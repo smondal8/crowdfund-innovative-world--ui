@@ -58,12 +58,6 @@ export class ContentComponent implements OnInit {
         }
       ];
     }
-
-//     if(sessionStorage.getItem("userId") != null){
-//       this.userLoggedIn = true;
-//       this.userName = sessionStorage.getItem('userName');
-//     }
-
   }
 
 

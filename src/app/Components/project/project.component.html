@@ -29,10 +29,17 @@
             <mat-divider></mat-divider>
             <br>
             <div>
-                <h5>PROJECT GOAL (INR) - </h5><h3>{{proj.projectTarget}}</h3>
+                <table>
+                    <tr>
+                        <td align="left"><h4>GOAL(INR)-{{proj.projectTarget}}  </h4></td><br>
+                        <td align="right"><h4>ACQUIRED(INR)-{{proj.projectAcquired}}</h4></td>
+                    </tr>
+                </table>
+                <!-- <h5>PROJECT GOAL (INR) - </h5><h3>{{proj.projectTarget}}</h3> -->
+                <!-- <h5>PROJECT ACQUIRED (INR) - </h5><h3>{{proj.projectAcquired}}</h3> -->
             </div>
         </div>
-        <button mat-icon-button class="arrowbutton">
+        <button *ngIf="isFunder" class="arrowbutton" (click)="fundPayment(proj.projectId)">
             <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
     </mat-card>
