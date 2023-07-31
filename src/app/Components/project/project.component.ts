@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { RestService } from 'src/app/Service/rest.service';
 import { TokenService } from 'src/app/Service/token.service';
+import { FundingComponent } from '../funding/funding/funding.component';
 
 export interface projectData{
   id:number;
@@ -84,12 +85,13 @@ export class ProjectComponent implements OnInit {
    }
 
    fundPayment(projectId : number):void{
-    let dialogref = this.dialog.open(AddProjectComponent, {
+    let dialogref = this.dialog.open(FundingComponent, {
       width: '500px',
       height: '550px',
       data: {
-        title: "Add new Project",
-        info: `User can create project to add into the app`
+        projectId: projectId,
+        title: "Make funding towards project",
+        info: `Thanks for having big heart and contributing in the project !`
       }
     })  
     dialogref.afterClosed().subscribe(result => {

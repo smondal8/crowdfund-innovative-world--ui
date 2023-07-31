@@ -22,6 +22,7 @@ import {TokenService} from './Service/token.service';
 import { RestService } from './Service/rest.service';
 import { TokenInterceptor } from './Service/token-interceptor.service';
 import { RegisterUserComponentComponent } from './Components/register/register-user-component/register-user-component.component';
+import { FundingComponent } from './Components/funding/funding/funding.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RegisterUserComponentComponent } from './Components/register/register-u
     FooterComponent,
     ContentComponent,
     LoginComponent,
-    RegisterUserComponentComponent
+    RegisterUserComponentComponent,
+    FundingComponent
   ],
   imports: [
     BrowserModule,
