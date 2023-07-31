@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class RestService {
  
+ 
  public baseURL = '';
  timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
  constructor(private http: HttpClient) {
@@ -43,6 +44,10 @@ export class RestService {
 
  registerUser(registerUserForm): Observable<any> {
   return this.http.post<any>(this.baseURL + '/register', registerUserForm, this.httpOptions);
+ }
+
+ fundProject(fundingFormobj: any, projectId: number): Observable<any> {
+  return this.http.post<any>(this.baseURL + '/makeFunds/' + projectId, fundingFormobj, this.httpOptions);
  }
 
 }

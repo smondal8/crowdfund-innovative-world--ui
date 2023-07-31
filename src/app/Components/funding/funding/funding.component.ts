@@ -28,27 +28,24 @@ export class FundingComponent implements OnInit {
   ngOnInit(): void {
 
     this.fundingForm = this.formBuilder.group({      
-      projectAmout: ['', Validators.compose([Validators.required])]
+      amount: ['', Validators.compose([Validators.required])]
     })
   }
 
-  addCard(projectName:any){
-    this.projectList = projectName;
-  }
 
-  addProject(){
-    const createProjectForm = Object.assign({},this.fundingForm.value);
+  donate(){
+    const fundingFormobj = Object.assign({},this.fundingForm.value);
     if(this.fundingForm.invalid){
-      this.toastr.error("Please fill all the fields!!");
+      this.toastr.error("Please fill the amount!!");
     }
     else{
-      this.restService.createProject(this.tokenService.getUser(),createProjectForm).subscribe(
+      this.restService.fundProject(fundingFormobj,this.data.projectId).subscribe(
         result=> {
-          this.toastr.info("Project Created!!");
+          this.toastr.info("Project is funded!!");
           this.dialogRef.close();
         },
         error=>{
-          this.toastr.error("Something wrong while creating the project!!");
+          this.toastr.error("Something wrong while funding the project!!");
           console.log(error);
         }
       )
