@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<mat-card appMaterialElevation appMaterialElevation class="cardclass">
+<mat-card appMaterialElevation appMaterialElevation class="cardclass" *ngIf=!isFunder>
     <mat-card-content class="cardbutton">
         <mat-icon (click)="addProject()">add_circle_outline</mat-icon>
         <p>Add new project</p>

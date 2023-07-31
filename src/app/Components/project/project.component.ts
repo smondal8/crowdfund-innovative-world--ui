@@ -24,6 +24,7 @@ export class ProjectComponent implements OnInit {
  
   desc='log items';
   name='device';
+  isFunder :boolean;
 
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[]=["id","name"];
@@ -41,7 +42,12 @@ export class ProjectComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.projects = ["Windstorm","Bombasto","Magneta","Tornado"];
+    if(this.tokenService.getRole() === "Funder"){
+      this.isFunder = true;
+    }
+    else{
+      this.isFunder = false;
+    }
     this.restService.getProject(this.tokenService.getUser()).subscribe(
       result=> {
         this.projectArray = result.projects;
