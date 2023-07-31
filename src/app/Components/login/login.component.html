@@ -3,18 +3,20 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
-          <h2 class="card-title text-center">Sign In</h2>
+          <h2 class="card-title text-center">SIGN IN</h2>
           <form [formGroup]="loginFormGroup" class="form-signin" >
             <div class="form-label-group">
-              <label for="username">User Name</label>
+
               <input formControlName="username" id="username" class="form-control" placeholder="User Name" required autofocus>
 
             </div>
+            <br>
             <div class="form-label-group">
-              <label for="inputPassword">Password</label>
+
               <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
             </div>
+            <br>
             <!-- <div class="custom-control custom-checkbox mb-3">
               <mat-form-field>
                 <mat-label>Select an option</mat-label>
@@ -24,7 +26,17 @@
                 </mat-select>
               </mat-form-field>
             </div> -->
-            <button align="center" class="btn btn-block btn-primary btn-block text-uppercase" type="submit" (click)="login($event)" [disabled]="!loginFormGroup.valid">Sign in</button>
+            <div>
+              <table>
+                <tr>
+                  <td><button align="center" class="btn btn-block btn-primary btn-block text-uppercase" type="submit" (click)="login($event)" [disabled]="!loginFormGroup.valid">Sign in</button></td>
+                  <td><button align="center" class="btn btn-block btn-primary btn-block text-uppercase" type="submit" (click)="registerUser()">Register</button></td>
+                </tr>
+              </table>
+            </div>
+
+
+
             <hr class="my-4">
           </form>
         </div>

@@ -21,6 +21,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {TokenService} from './Service/token.service';
 import { RestService } from './Service/rest.service';
 import { TokenInterceptor } from './Service/token-interceptor.service';
+import { RegisterUserComponentComponent } from './Components/register/register-user-component/register-user-component.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { TokenInterceptor } from './Service/token-interceptor.service';
     HeaderComponent,
     FooterComponent,
     ContentComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterUserComponentComponent
   ],
   imports: [
     BrowserModule,

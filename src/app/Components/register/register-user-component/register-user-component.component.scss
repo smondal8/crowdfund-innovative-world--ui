@@ -1,0 +1,95 @@
+.wrapper {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial' !important;
+
+    .firstsection {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        gap: 20px;
+
+        .title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h4 {
+            font-weight: bold;
+            padding: 0px;
+            margin: 0px 0px 5px;
+            font-family: 'Arial' !important;
+        }
+
+        p {
+            font-size: 12px;
+            padding: 0px;
+            margin: 0px;
+            font-weight: bold;
+        }
+    }
+
+    .example-spacer {
+        flex: 1 2 auto;
+    }
+
+    .mat-icon-button {
+        background-color: transparent !important;
+
+        .mat-icon {
+            color: #8A00E5;
+        }
+    }
+
+    .optionsection {
+        width: 370px;
+        height: 28px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .info {
+        margin-top: 5px;
+        display: flex;
+        flex-direction: row;
+        gap: 17px;
+
+        mat-icon {
+            height: 0.5px;
+            width: 0.5px;
+            font-size: 17px;
+        }
+
+        p {
+            color: #707070;
+            font-size: 11px;
+            margin-top: -1px;
+        }
+    }
+
+
+    .buttonsection {
+        margin-top: 150px
+    }
+
+    .button-add {
+        background-color: #8A00E5 !important;
+        color: white;
+        cursor: pointer;
+        border-radius: 18px;
+        border: 2px solid #8A00E5;
+    }
+
+    .button-cancel{
+        background-color: #8A00E5 !important;
+        color: white;
+        cursor: pointer;
+        border-radius: 18px;
+        border: 2px solid #8A00E5;
+    }
+
+}

@@ -8,6 +8,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormGroup,FormBuilder, Validators, ReactiveFormsModule  } from '@angular/forms';
 import { RestService } from 'src/app/Service/rest.service';
+import { RegisterUserComponentComponent } from '../register/register-user-component/register-user-component.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private router: Router, private authService: AuthService, private cookie: CookieService,
-    private toastr: ToastrService, private tokenService: TokenService, private formBuilder: FormBuilder,private restService: RestService) { }
+    private toastr: ToastrService, private tokenService: TokenService, private formBuilder: FormBuilder,private restService: RestService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if(sessionStorage.getItem("userId") != null){
@@ -60,5 +62,19 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+  registerUser():void{
+    let dialogref = this.dialog.open(RegisterUserComponentComponent, {
+      width: '500px',
+      height: '700px',
+      data: {
+        title: "Register new user",
+        info: `User can register themselves as Fundraiser or Funder`
+      }
+    })
+    dialogref.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    })
+   }
 
 }

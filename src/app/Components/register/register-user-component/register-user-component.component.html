@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <div class="firstsection">
+    <div class="title">
+      <h4>{{data.title}}</h4>
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-icon-button color="primary" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="registerForm" class="form-signin" >
+    <div class="form-label-group">
+      <input formControlName="userId" id="userId" class="form-control" placeholder="User Id" required autofocus>
+    </div>
+    <br>
+    <div class="form-label-group">
+      <input formControlName="userName" id="userName" class="form-control" placeholder="User Name" required autofocus>
+    </div>
+    <br>
+    <div class="form-label-group">
+      <input formControlName="password" id="password" class="form-control" placeholder="Password" required>
+    </div>
+
+    <br>
+    <div class="form-label-group">
+      <input formControlName="aboutMe" id="aboutMe" class="form-control" placeholder="Something about the user" required>
+    </div>
+    <br>
+    <div class="form-label-group">
+      <input formControlName="city" id="city" class="form-control" placeholder="City" required>
+    </div>
+    <br>
+    <div class="form-label-group">
+      <input formControlName="phoneNumber" id="phoneNumber" (keypress)="numberOnly($event)" class="form-control" placeholder="Phone Number" required>
+    </div>
+    <br>
+    <mat-form-field>
+      <mat-label>Select an option</mat-label>
+      <mat-select formControlName = "userType">
+        <mat-option value="FundRaiser">Fund Raiser</mat-option>
+        <mat-option value="Funder">Funder</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <div class="info">
+    <mat-icon aria-hidden="false">info</mat-icon>
+    <p>{{data.info}}</p>
+  </div>
+  <div class="buttonsection">
+    <button mat-raised-button color="primary" [disabled]="!registerForm.valid" class="button-add" (click)="registerUser()">Register</button>
+    <button mat-raised-button color="primary" class="button-cancel" mat-dialog-close
+            style="margin-left: 5px;">Cancel</button>
+  </div>
+
+</div>
