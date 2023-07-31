@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     this.restService.authenticate(loginData).subscribe(
       result=> {
         this.tokenService.saveUser(result);
-        this.tokenService.passValue(true);
+        this.tokenService.passValue(result);
         this.router.navigate(['/profile']);
       },
       error=>{

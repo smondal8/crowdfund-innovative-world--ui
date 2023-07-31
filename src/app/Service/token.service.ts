@@ -12,7 +12,7 @@ const ROLE = 'role';
 })
 export class TokenService {
 
-  public subject = new Subject<boolean>();
+  public subject = new Subject<any>();
   constructor() { }
 
   signOut() {
@@ -41,6 +41,10 @@ export class TokenService {
 
   public getUser() {
     return sessionStorage.getItem(USER_ID);
+  }
+
+  public getRole() {
+    return sessionStorage.getItem(ROLE);
   }
 
   public passValue(data){

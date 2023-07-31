@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/Service/token.service';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,20 @@ export class HeaderComponent implements OnInit {
   @Input() fullname : string;
   @Input() role : string;
   constructor(
-  private router: Router
+  private router: Router,private tokenService: TokenService
   ){ }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    this.tokenService.subject.subscribe(
+      data=>{
+        if(data){
+          this.userLoggedIn = true;
+          this.userName = data.userId;
+          this.fullname = data.userName;
+          this.role = data.role;
+        }
+      }
+    )
     if(sessionStorage.getItem("userId") != null){
         this.userLoggedIn = true;
         //this.userName = sessionStorage.getItem('userId');

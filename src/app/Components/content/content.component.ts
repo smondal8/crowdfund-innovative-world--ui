@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/Service/token.service';
 export interface TabItem {
   label: string;
   route: string;
@@ -13,30 +14,59 @@ export class ContentComponent implements OnInit {
 
   @Input() userLoggedIn : boolean;
   @Input() userName : String;
+  role : String;
+  tabs: TabItem[];
 
-  constructor() { }
+  constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("userId") != null){
-      this.userLoggedIn = true;
-      this.userName = sessionStorage.getItem('userId');
-  }
+    this.tokenService.subject.subscribe(
+      data=>{
+        if(data){
+          this.userLoggedIn = true;
+          this.userName = data.userId;
+          this.role = data.role;
+          this.ngOnInit();
+        }
+      }
+    )
+    if(this.tokenService.getRole() === "Funder"){
+      this.tabs = [
+        {
+          label: 'Funder Profile',
+          route: '/profile',
+        },
+        {
+          label: 'Projects',
+          route: '/project',
+        }
+      ];
+    }
+    if(this.tokenService.getRole() === "FundRaiser"){
+      this.tabs = [
+        {
+          label: 'Fund Raiser Profile',
+          route: '/profile',
+        },
+        {
+          label: 'Current Projects',
+          route: '/project',
+        },
+        {
+          label: 'Archive Projects',
+          route: '/archive',
+        }
+      ];
+    }
+
+//     if(sessionStorage.getItem("userId") != null){
+//       this.userLoggedIn = true;
+//       this.userName = sessionStorage.getItem('userName');
+//     }
+
   }
 
-  tabs: TabItem[] = [
-    {
-      label: 'FundRaiser Profile',
-      route: '/profile',
-    },
-    {
-      label: 'Current Projects',
-      route: '/project',
-    },
-    {
-      label: 'Archive Projects',
-      route: '/archive',
-    }
-  ];
+
 
   OnTabSelectionChange()
   {

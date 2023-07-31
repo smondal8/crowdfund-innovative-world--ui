@@ -33,8 +33,8 @@ export class AppComponent implements OnInit {
     this.tokenService.subject.subscribe(
       data=>{
         if(data){
-          this.userLoggedIn = data;
-        }        
+          this.userLoggedIn = true;
+        }
       }
     )
     if(sessionStorage.getItem("userId") != null){
