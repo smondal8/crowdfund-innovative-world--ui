@@ -4,13 +4,11 @@ import { DragdropDirective } from 'src/app/Directives/DragandDrop/dragdrop.direc
 import { UserroleDirective } from 'src/app/Directives/UserRole/userrole.directive';
 import { MaterialModule } from 'src/app/Material/angular.material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowseComponent } from 'src/app/Components/dashboard-upload/browse/browse.component';
 
 @NgModule({
   declarations: [
     DragdropDirective,
-    UserroleDirective,
-    BrowseComponent],
+    UserroleDirective],
   imports: [
     CommonModule,
     MaterialModule,
@@ -18,8 +16,7 @@ import { BrowseComponent } from 'src/app/Components/dashboard-upload/browse/brow
     ReactiveFormsModule
   ],
   exports:[
-    DragdropDirective,
-    BrowseComponent
+    DragdropDirective
   ]
 })
 export class SharedModule { }
