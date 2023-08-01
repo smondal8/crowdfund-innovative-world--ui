@@ -5,8 +5,7 @@
                 <h3 *ngIf="currentTab == 'unit'" class="side-nave-heading">Add unit</h3>
                 <h3 *ngIf="currentTab == 'device'" class="side-nave-heading">Add device</h3>
                 <mat-icon class="close-side-nav-icon" (click)="drawer.close()">close</mat-icon>                
-                <app-add-unit (closeDrawer)="closeDrawer()" *ngIf="currentTab == 'unit'"></app-add-unit>
-                <app-add-device (closeDrawer)="closeDrawer()" *ngIf="currentTab == 'device'"></app-add-device>
+                
             </div>
         </mat-drawer>
         <mat-drawer-content>

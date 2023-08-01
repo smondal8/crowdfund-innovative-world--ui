@@ -45,7 +45,7 @@ export class FundingComponent implements OnInit {
           this.dialogRef.close();
         },
         error=>{
-          this.toastr.error(JSON.stringify("Something wrong while funding the project!!"));
+          this.toastr.error(JSON.stringify(error));
           console.log(error);
         }
       )

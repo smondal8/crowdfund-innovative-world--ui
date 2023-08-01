@@ -7,19 +7,16 @@ import { DashboardUploadComponent } from 'src/app/Components/dashboard-upload/da
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../Shared/shared.module';
 import { TableComponent } from 'src/app/Components/dashboard-upload/table/table.component';
-import { DashboardEditComponent } from 'src/app/Components/dashboard-edit/dashboard-edit.component';
 @NgModule({
   declarations: 
   [DashboardComponent,
    DashboardUploadComponent,
-   TableComponent,
-   DashboardEditComponent],
+   TableComponent],
   imports: [
     CommonModule,
     DashBoardRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    SharedModule,
     FormsModule
   ]
 })

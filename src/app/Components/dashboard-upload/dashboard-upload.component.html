@@ -7,7 +7,7 @@
     </div>
     <div class="content mat-elevation-z8">
         <div class="firstsection" [ngClass]="{defaultheight : !tabledisplaysts}">
-            <app-browse [TitleDisplaySts] = "true" [Template]="mode" [FileConfig]="FileConfig" (FileUploadEvent) = "OnFileAdd($event)"></app-browse>
+           
         </div>
         <div class="linebreaker" *ngIf="tabledisplaysts"></div>
         <div class="secondsection" *ngIf="tabledisplaysts">

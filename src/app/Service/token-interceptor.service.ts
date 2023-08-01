@@ -20,27 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
    // return next.handle(authReq);
 
    return next.handle(authReq).pipe(catchError((error: HttpErrorResponse) => {
-     let errorMessage = '';
-     if (error.error instanceof ErrorEvent) {
-       // client-side error
-       errorMessage = `Error: ${error.error.message}`;
-     } else {
-       // server-side error
-       if (error && error.error && error.status === 401) {
-         // Unauthorizez
-         errorMessage = 'Token Error. Logging out!!';
-         this.tokenService.signOut();
-       } else if (error && error.error && error.error.error) {
-         // errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-         errorMessage = error.error.error;
-       } else {
-         errorMessage = 'Internal Server Error';
-       }
-     }
-     //console.log(error);
-     // window.alert(errorMessage);
-     this.toastr.error(errorMessage);
-     return throwError(errorMessage);
+     return throwError(error.error.message);
    }));
  }
 }
